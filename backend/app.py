@@ -99,7 +99,16 @@ import whisper
 import google.generativeai as genai
 
 # --- Load environment ---
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
+#load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
+
+load_dotenv()
+
+# --- Debug check ---
+api_key = os.getenv("GOOGLE_API_KEY")
+if api_key:
+    print("✅ GOOGLE_API_KEY loaded successfully (length:", len(api_key), ")")
+else:
+    print("❌ GOOGLE_API_KEY not found! Check your Render environment settings.")
 
 print("GEMINI_API_KEY:", os.getenv("GOOGLE_API_KEY"))
 
