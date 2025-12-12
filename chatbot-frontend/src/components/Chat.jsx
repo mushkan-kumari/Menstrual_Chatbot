@@ -1024,8 +1024,7 @@ useEffect(() => {
 
       if (data.answer) {
         let answer = data.answer;
-        if (data.sources?.length)
-          answer += "\n\nSources: " + data.sources.join(", ");
+        
         typeMessage(answer);
       } else {
         addMessage("Error getting response", "bot");

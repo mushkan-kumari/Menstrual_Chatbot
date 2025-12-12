@@ -1,13 +1,13 @@
 
-"""
+
 import os
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from .retriever import Retriever
+from retriever import Retriever
 from dotenv import load_dotenv
 import ollama
-from .speech_module import router as speech_router
+from speech_module import router as speech_router
 import whisper
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
@@ -120,6 +120,7 @@ gemini_model = genai.GenerativeModel("models/gemini-2.5-flash")
 
 # Initialize FastAPI app
 app = FastAPI()
+print("🚀 FastAPI app is starting up...")
 
 # Add speech routes
 app.include_router(speech_router)
@@ -198,7 +199,9 @@ async def transcribe_audio(file: UploadFile = File(...)):
 
 
 if __name__ == "__main__":
-    import uvicorn
-    import os
+    import uvicorn, os
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    print(f"🚀 Starting server on port {port}")
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
+
+"""
